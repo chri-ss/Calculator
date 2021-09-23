@@ -1,0 +1,31 @@
+body {
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-container {
+    height: 30rem;
+    width: 18rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    justify-content: center;
+    align-items: grid-start;
+    grid-gap: 1rem;
+}
+
+button {
+    height: 4rem;
+}
+
+.container {
+    border: 1px solid black;
+    padding: 2rem;
+}
+
+p {
+    height: 5rem;
+    border: 1px solid blue;
+}
