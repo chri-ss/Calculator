@@ -3,6 +3,12 @@ let display = document.querySelector('p');
 let buttons = document.querySelectorAll('.display');
 buttons = Array.from(buttons);
 
+let clear = document.querySelector('.clear');
+clear.addEventListener('click', () => {
+    input = [];
+    display.textContent = '';
+})
+
 let input = [];
 
 buttons.forEach(button => button.addEventListener('click', () => {
@@ -13,6 +19,15 @@ buttons.forEach(button => button.addEventListener('click', () => {
     input.push(button.textContent);
     display.textContent += button.textContent;
 }))
+
+function storeNum(Arr) {
+    let num = Arr[0];
+    for(i = 1; i < Arr.length; ++i)
+    {
+        num += Arr[i];
+    }
+    return num;
+}
 
 function add(x, y) {
     return x + y;
