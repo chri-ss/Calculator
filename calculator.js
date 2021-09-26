@@ -7,9 +7,37 @@ let clear = document.querySelector('.clear');
 clear.addEventListener('click', () => {
     input = [];
     display.textContent = '';
+    mem = [];
 })
 
 let input = [];
+let mem = [];
+
+let operators = document.querySelectorAll('.operator');
+operators.forEach(operator => operator.addEventListener('click', () =>{
+        if(!mem[0])
+        {
+            mem[0] = parseInt(storeNum(input));    
+            mem[1] = operator.textContent;
+        }
+        else if(mem[0])
+        {
+            mem[2] = parseInt(storeNum(input));
+            mem[0] = operate(mem[0], mem[1], mem[2]);
+            mem[1] = operator.textContent;
+        }
+        input = [];
+        display.textContent = '';
+        console.log(mem);
+}))
+
+let equals = document.querySelector('.equals');
+equals.addEventListener('click', () => {
+    mem[2] = parseInt(storeNum(input));
+    input = [];
+    input.push(operate(mem[0], mem[1], mem[2]))
+    display.textContent = operate(mem[0], mem[1], mem[2]); 
+})
 
 buttons.forEach(button => button.addEventListener('click', () => {
     if(input.length > 10)
