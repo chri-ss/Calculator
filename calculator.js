@@ -5,57 +5,57 @@ buttons = Array.from(buttons);
 
 let clear = document.querySelector('.clear');
 clear.addEventListener('click', () => {
-    input = [];
+    input = '';
     display.textContent = '';
     mem = [];
+    op = '';
 })
 
-let input = [];
+let input = '';
 let mem = [];
-
-let operators = document.querySelectorAll('.operator');
-operators.forEach(operator => operator.addEventListener('click', () =>{
-        if(!mem[0])
-        {
-            mem[0] = parseInt(storeNum(input));    
-            mem[1] = operator.textContent;
-        }
-        else if(mem[0])
-        {
-            mem[2] = parseInt(storeNum(input));
-            mem[0] = operate(mem[0], mem[1], mem[2]);
-            mem[1] = operator.textContent;
-        }
-        input = [];
-        display.textContent = '';
-        console.log(mem);
-}))
-
-let equals = document.querySelector('.equals');
-equals.addEventListener('click', () => {
-    mem[2] = parseInt(storeNum(input));
-    input = [];
-    input.push(operate(mem[0], mem[1], mem[2]))
-    display.textContent = operate(mem[0], mem[1], mem[2]); 
-})
+let op = '';
 
 buttons.forEach(button => button.addEventListener('click', () => {
     if(input.length > 10)
     {
         return 0;
     }
-    input.push(button.textContent);
-    display.textContent += button.textContent;
+    input += button.textContent;    //store string of number in input while typing
+    display.textContent = input;    //display input on screen
 }))
 
-function storeNum(Arr) {
-    let num = Arr[0];
-    for(i = 1; i < Arr.length; ++i)
+let operators = document.querySelectorAll('.operator');
+operators.forEach(operator => operator.addEventListener('click', () =>{
+    if(op === '')
     {
-        num += Arr[i];
+        mem[0] = parseInt(input); //put first number into first index of memory
+        op = operator.textContent; //store operator in variable
+        display.textContent = mem[0];           
     }
-    return num;
-}
+    else
+    {
+        mem[1] = parseInt(input); //store second number into second index
+        mem[0] = mem.reduce(function(total, nextNum) {
+            return operate(total, op, nextNum);         //perform operation and store back into mem[0]
+        })
+        op = operator.textContent;      //update operator
+        display.textContent = mem[0];   //update display
+        mem[1] = 0;                     //clear mem[0]
+    }
+    input = '';
+    console.log(mem);
+}))
+
+let equals = document.querySelector('.equals');
+equals.addEventListener('click', () => {
+        mem[1] = parseInt(input); //store second number into second index
+        mem[0] = mem.reduce(function(total, nextNum) {      
+            return operate(total, op, nextNum);     //perform op and store in mem[0]
+        })
+        mem[1] = 0;                   //clear mem[0]
+        display.textContent = mem[0]; //set display to the result of the calc
+        input = '0';
+})
 
 function add(x, y) {
     return x + y;
