@@ -60,13 +60,21 @@ equals.addEventListener('click', () => {
         mem[0] = mem.reduce(function(total, nextNum) {      
             return operate(total, op, nextNum);     //perform op and store in mem[0]
         })
-        mem[1] = 0;                   //clear mem[1]
+        //mem[1] = 0;                   //clear mem[1]
         display.textContent = mem[0]; //set display to the result of the calc
-        input = '0';
+        //input = '0';
         if(op === '÷' && input === '0')
         {
             input = '1';
         }
+})
+
+let posneg = document.querySelector('.posneg');
+
+posneg.addEventListener('click',() => {
+    input = -parseInt(input);
+    mem[0] = input;
+    display.textContent = input;
 })
 
 function add(x, y) {
