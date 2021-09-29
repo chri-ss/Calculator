@@ -21,6 +21,10 @@ buttons.forEach(button => button.addEventListener('click', () => {
         return 0;
     }
     input += button.textContent;    //store string of number in input while typing
+    if(input[0] == '0')
+    {
+        input = input.slice(1);
+    }
     display.textContent = input;    //display input on screen
 }))
 
@@ -34,15 +38,19 @@ operators.forEach(operator => operator.addEventListener('click', () =>{
     }
     else
     {
+        if(op === '÷' && input === '0')
+        {
+            input = '1';
+        }
         mem[1] = parseInt(input); //store second number into second index
         mem[0] = mem.reduce(function(total, nextNum) {
             return operate(total, op, nextNum);         //perform operation and store back into mem[0]
         })
         op = operator.textContent;      //update operator
         display.textContent = mem[0];   //update display
-        mem[1] = 0;                     //clear mem[0]
+        mem[1] = 0;                     //clear mem[1]
     }
-    input = '';
+    input = '0';
     console.log(mem);
 }))
 
@@ -52,9 +60,13 @@ equals.addEventListener('click', () => {
         mem[0] = mem.reduce(function(total, nextNum) {      
             return operate(total, op, nextNum);     //perform op and store in mem[0]
         })
-        mem[1] = 0;                   //clear mem[0]
+        mem[1] = 0;                   //clear mem[1]
         display.textContent = mem[0]; //set display to the result of the calc
         input = '0';
+        if(op === '÷' && input === '0')
+        {
+            input = '1';
+        }
 })
 
 function add(x, y) {
@@ -89,6 +101,10 @@ function operate (x, operator, y) {
             break;
 
         case '÷':
+            if(y === 0)
+            {
+                y = 1;
+            }
             return divide(x, y);
             break;
 
