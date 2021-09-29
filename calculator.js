@@ -5,15 +5,16 @@ buttons = Array.from(buttons);
 
 let clear = document.querySelector('.clear');
 clear.addEventListener('click', () => {
-    input = '';
-    display.textContent = '';
+    input = '0';
+    display.textContent = '0';
     mem = [];
     op = '';
 })
 
-let input = '';
+let input = '0';
 let mem = [];
 let op = '';
+display.textContent = 0;
 
 buttons.forEach(button => button.addEventListener('click', () => {
     if(input.length > 10)
@@ -30,7 +31,7 @@ buttons.forEach(button => button.addEventListener('click', () => {
 
 let operators = document.querySelectorAll('.operator');
 operators.forEach(operator => operator.addEventListener('click', () =>{
-    if(op === '')
+    if(op === '0')
     {
         mem[0] = parseInt(input); //put first number into first index of memory
         op = operator.textContent; //store operator in variable
