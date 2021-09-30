@@ -37,12 +37,14 @@ operators.forEach(operator => operator.addEventListener('click', () =>{
         op = operator.textContent; //store operator in variable
         display.textContent = mem[0];           
     }
-    else
+    else if(op === '÷' && input === '0')
     {
-        if(op === '÷' && input === '0')
         {
             input = '1';
         }
+    }
+    else
+    {
         mem[1] = parseInt(input); //store second number into second index
         mem[0] = mem.reduce(function(total, nextNum) {
             return operate(total, op, nextNum);         //perform operation and store back into mem[0]
@@ -61,13 +63,14 @@ equals.addEventListener('click', () => {
         mem[0] = mem.reduce(function(total, nextNum) {      
             return operate(total, op, nextNum);     //perform op and store in mem[0]
         })
-        //mem[1] = 0;                   //clear mem[1]
+        mem[1] = 0;                   //clear mem[1]
         display.textContent = mem[0]; //set display to the result of the calc
         //input = '0';
         if(op === '÷' && input === '0')
         {
             input = '1';
         }
+        console.log(mem);
 })
 
 let posneg = document.querySelector('.posneg');
@@ -118,7 +121,7 @@ function operate (x, operator, y) {
             break;
 
         default: 
-            return `${x} ${y}`;
+            return 0;
             break;
     }
 }
