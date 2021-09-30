@@ -6,12 +6,11 @@ buttons = Array.from(buttons);
 let clear = document.querySelector('.clear');
 clear.addEventListener('click', () => {
     input = '0';
-    display.textContent = '0';
     mem = [];
     op = '';
+    display.textContent = 0;
 })
 
-let equalsFlag = false;
 let input = '0';
 let mem = [];
 let op = '';
@@ -43,6 +42,13 @@ operators.forEach(operator => operator.addEventListener('click', () =>{
         {
             input = '1';
         }
+        mem[1] = parseInt(input); //store second number into second index
+        mem[0] = mem.reduce(function(total, nextNum) {
+            return operate(total, op, nextNum);         //perform operation and store back into mem[0]
+        })
+        op = operator.textContent;      //update operator
+        display.textContent = mem[0];   //update display
+        mem[1] = 0;                     //clear mem[1]
     }
     else
     {
@@ -77,9 +83,12 @@ equals.addEventListener('click', () => {
 let posneg = document.querySelector('.posneg');
 
 posneg.addEventListener('click',() => {
-    input = -parseInt(input);
-    mem[0] = input;
-    display.textContent = input;
+    if(input != 0)
+    {
+        input = -parseInt(input);
+        mem[0] = input;
+        display.textContent = input;
+    }
 })
 
 function add(x, y) {
