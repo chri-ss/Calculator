@@ -11,6 +11,7 @@ clear.addEventListener('click', () => {
     op = '';
 })
 
+let equalsFlag = false;
 let input = '0';
 let mem = [];
 let op = '';
@@ -31,7 +32,7 @@ buttons.forEach(button => button.addEventListener('click', () => {
 
 let operators = document.querySelectorAll('.operator');
 operators.forEach(operator => operator.addEventListener('click', () =>{
-    if(op === '0')
+    if(op === '')
     {
         mem[0] = parseInt(input); //put first number into first index of memory
         op = operator.textContent; //store operator in variable
@@ -65,11 +66,11 @@ equals.addEventListener('click', () => {
         })
         mem[1] = 0;                   //clear mem[1]
         display.textContent = mem[0]; //set display to the result of the calc
-        //input = '0';
         if(op === '÷' && input === '0')
         {
             input = '1';
         }
+        input = 0;
         console.log(mem);
 })
 
