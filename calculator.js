@@ -31,12 +31,18 @@ buttons.forEach(button => button.addEventListener('click', () => {
 
 let operators = document.querySelectorAll('.operator');
 operators.forEach(operator => operator.addEventListener('click', () =>{
-    if(op === '÷' && input === '0')
+   
+    if(input === '0' && op == '×')
     {
-        input = '1';
+        input === '1';
+        op = operator.textContent;
     }
-    
-    if(op === '')       //first time operator
+    else if(input === '0' && op == '÷')
+    {
+        input === '1';
+        op = operator.textContent;
+    }
+    else if(op === '')       //first time operator
     {
         mem[0] = parseInt(input);
         op = operator.textContent; 
@@ -48,12 +54,14 @@ operators.forEach(operator => operator.addEventListener('click', () =>{
         mem[0] = mem.reduce(function(total, nextNum) {
             return operate(total, op, nextNum);         //perform operation and store back into mem[0]
         })
-        op = operator.textContent;      //update operator
-        display.textContent = mem[0];   //update display
-        mem[1] = 0;                     //clear mem[1]
+        op = operator.textContent;
+        display.textContent = mem[0];   
+        mem[1] = 1;                     
     }
     input = '0';
     console.log(mem);
+    console.log(op);
+    console.log(input);
 }))
 
 let equals = document.querySelector('.equals');
@@ -62,14 +70,11 @@ equals.addEventListener('click', () => {
         mem[0] = mem.reduce(function(total, nextNum) {      
             return operate(total, op, nextNum);     //perform op and store in mem[0]
         })
-        mem[1] = 0;                   //clear mem[1]
+        mem[1] = 1;                   //clear mem[1]
         display.textContent = mem[0]; //set display to the result of the calc
-        if(op === '÷' && input === '0')
-        {
-            input = '1';
-        }
-        input = 0;
+        input = '0';
         console.log(mem);
+        console.log(op);
 })
 
 let posneg = document.querySelector('.posneg');
@@ -117,6 +122,7 @@ function operate (x, operator, y) {
         case '÷':
             if(y === 0)
             {
+                x = 0;
                 y = 1;
             }
             return divide(x, y);
