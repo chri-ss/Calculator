@@ -66,6 +66,16 @@ operators.forEach(operator => operator.addEventListener('click', () =>{
 
 let equals = document.querySelector('.equals');
 equals.addEventListener('click', () => {
+    if(input === '0' && op == '×')
+    {
+        input === '1';
+    }
+    else if(input === '0' && op == '÷')
+    {
+        input === '1';
+    }
+    else
+    {
         mem[1] = parseInt(input); //store second number into second index
         mem[0] = mem.reduce(function(total, nextNum) {      
             return operate(total, op, nextNum);     //perform op and store in mem[0]
@@ -75,6 +85,7 @@ equals.addEventListener('click', () => {
         input = '0';
         console.log(mem);
         console.log(op);
+    }
 })
 
 let posneg = document.querySelector('.posneg');
@@ -82,9 +93,9 @@ let posneg = document.querySelector('.posneg');
 posneg.addEventListener('click',() => {
     if(input != 0)
     {
-        input = -parseInt(input);
-        mem[0] = input;
+        input = parseInt(display.textContent) * -1;
         display.textContent = input;
+        console.log(input);
     }
 })
 
