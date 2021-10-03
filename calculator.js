@@ -11,6 +11,19 @@ clear.addEventListener('click', () => {
     display.textContent = 0;
 })
 
+let percent = document.querySelector('.percent');
+percent.addEventListener('click', () => {
+    input /= 100;
+    display.textContent = input;
+})
+
+let decimal = document.querySelector('.dec');
+decimal.addEventListener('click', () => {
+    input.includes('.') ? input += '' : input += '.';
+    display.textContent = input;
+})
+
+
 let input = '0';
 let mem = [];
 let op = '';
@@ -22,7 +35,7 @@ buttons.forEach(button => button.addEventListener('click', () => {
         return 0;
     }
     input += button.textContent;    //store string of number in input while typing
-    if(input[0] == '0')
+    if(input[0] == '0' && input[1] != '.')
     {
         input = input.slice(1);
     }
@@ -44,13 +57,13 @@ operators.forEach(operator => operator.addEventListener('click', () =>{
     }
     else if(op === '')       //first time operator
     {
-        mem[0] = parseInt(input);
+        mem[0] = parseFloat(input);
         op = operator.textContent; 
         display.textContent = mem[0];           
     }
     else
     {
-        mem[1] = parseInt(input); //store second number into second index
+        mem[1] = parseFloat(input); //store second number into second index
         mem[0] = mem.reduce(function(total, nextNum) {
             return operate(total, op, nextNum);         //perform operation and store back into mem[0]
         })
@@ -76,7 +89,7 @@ equals.addEventListener('click', () => {
     }
     else
     {
-        mem[1] = parseInt(input); //store second number into second index
+        mem[1] = parseFloat(input); //store second number into second index
         mem[0] = mem.reduce(function(total, nextNum) {      
             return operate(total, op, nextNum);     //perform op and store in mem[0]
         })
@@ -93,7 +106,7 @@ let posneg = document.querySelector('.posneg');
 posneg.addEventListener('click',() => {
     if(input != 0)
     {
-        input = parseInt(display.textContent) * -1;
+        input = parseFloat(display.textContent) * -1;
         display.textContent = input;
         console.log(input);
     }
