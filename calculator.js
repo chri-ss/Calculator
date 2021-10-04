@@ -68,7 +68,13 @@ operators.forEach(operator => operator.addEventListener('click', () =>{
             return operate(total, op, nextNum);         //perform operation and store back into mem[0]
         })
         op = operator.textContent;
-        display.textContent = mem[0];   
+        display.textContent = mem[0];
+        if(display.textContent.includes('.'))
+        {
+            let firstPart = display.textContent.slice(0, display.textContent.indexOf('.'));
+            let secondPart = display.textContent.slice(display.textContent.indexOf('.'), 12 - display.textContent.indexOf('.'));
+            display.textContent = firstPart + secondPart;
+        }   
         mem[1] = 1;                     
     }
     input = '0';
@@ -95,6 +101,12 @@ equals.addEventListener('click', () => {
         })
         mem[1] = 1;                   //clear mem[1]
         display.textContent = mem[0]; //set display to the result of the calc
+        if(display.textContent.includes('.'))
+        {
+            let firstPart = display.textContent.slice(0, display.textContent.indexOf('.'));
+            let secondPart = display.textContent.slice(display.textContent.indexOf('.'), 12-display.textContent.indexOf('.'));
+            display.textContent = firstPart + secondPart;
+        }
         input = '0';
         console.log(mem);
         console.log(op);
@@ -106,9 +118,13 @@ let posneg = document.querySelector('.posneg');
 posneg.addEventListener('click',() => {
     if(input != 0)
     {
-        input = parseFloat(display.textContent) * -1;
+        input *= -1;
         display.textContent = input;
         console.log(input);
+    }
+    else
+    {
+        display.textContent *= -1
     }
 })
 
