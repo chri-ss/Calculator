@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
 body {
     height: 100%;
     display: grid;
@@ -10,7 +12,7 @@ body {
 }
 
 .header {
-    padding: 3rem;
+    padding: 2rem;
 }
 
 .button-container {
@@ -28,6 +30,8 @@ button {
     height: 4rem;
     border-radius:  1rem;
     background-color: #687888;
+    font-family: 'Satisfy', cursive;
+    font-size: 2rem;
 }
 
 .container {
@@ -49,4 +53,6 @@ p {
     margin-top: 1rem;
     background-color:#E7EBEE;
     opacity: 0.7;
+    font-family: 'Satisfy', cursive;
+    text-align: center;
 }
