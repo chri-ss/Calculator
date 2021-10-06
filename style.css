@@ -1,8 +1,16 @@
 body {
-    height: 100vh;
+    height: 100%;
     display: grid;
     justify-content: center;
     align-items: center;
+    background-image: url(/images/Utah_teapot_simple_2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header {
+    padding: 3rem;
 }
 
 .button-container {
@@ -18,20 +26,27 @@ body {
 
 button {
     height: 4rem;
+    border-radius:  1rem;
+    background-color: #687888;
 }
 
 .container {
-    border: 1px solid black;
+    border:  solid #5D6D7D;
+    border-radius: 1rem;
     padding: 2rem;
     text-align: right;
+    background-color: #7c9ab8;
 }
 
 p {
     height: 4rem;
-    border: 1px solid blue;
+    border: 1px solid #5D6D7D;
+    border-radius:  0.5rem;
     font-size: 50px;
     align-items: grid-end;
     margin: 0;
     margin-bottom: 1.5rem;
     margin-top: 1rem;
+    background-color:#E7EBEE;
+    opacity: 0.7;
 }

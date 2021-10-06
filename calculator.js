@@ -81,9 +81,9 @@ operators.forEach(operator => operator.addEventListener('click', () =>{
         {
             display.textContent = mem[0].toFixed(10 - display.textContent.indexOf('.'));
         }
-        else
+        else if(display.textContent > 99999999999)
         {
-            display.textContent = mem[0].toPrecision(10);
+            display.textContent = mem[0].toExponential(3);
         }
         mem[1] = 1;                
     }
@@ -115,21 +115,10 @@ equals.addEventListener('click', () => {
         {
             display.textContent = mem[0].toFixed(10 - display.textContent.indexOf('.'));
         }
-        else
+        else if(display.textContent > 99999999999)
         {
-            display.textContent = mem[0].toPrecision(10);
+            display.textContent = mem[0].toExponential(3);
         }
-
-        /*if(display.textContent.includes('.'))
-        {
-            if(display.textContent.length > 11)
-            {
-                display.textContent = mem[0].toPrecision(10);
-            }
-            let firstPart = display.textContent.slice(0, display.textContent.indexOf('.'));
-            let secondPart = display.textContent.slice(display.textContent.indexOf('.'), 12 - display.textContent.indexOf('.'));
-            display.textContent = firstPart + secondPart;
-        }*/
         input = '0';
         console.log(mem);
         console.log(op);
