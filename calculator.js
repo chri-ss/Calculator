@@ -11,9 +11,17 @@ clear.addEventListener('click', () => {
     display.textContent = 0;
 })
 
+let squareRoot = document.querySelector('.sqrrt');
+squareRoot.addEventListener('click', () => {
+    input = Math.sqrt(input);
+    mem[0] = input;
+    display.textContent = mem[0];
+})
+
 let percent = document.querySelector('.percent');
 percent.addEventListener('click', () => {
     input /= 100;
+    mem[0] = input;
     display.textContent = input;
 })
 
@@ -69,13 +77,15 @@ operators.forEach(operator => operator.addEventListener('click', () =>{
         })
         op = operator.textContent;
         display.textContent = mem[0];
-        if(display.textContent.includes('.'))
+        if(display.textContent.length > 11 && display.textContent.includes('.'))
         {
-            let firstPart = display.textContent.slice(0, display.textContent.indexOf('.'));
-            let secondPart = display.textContent.slice(display.textContent.indexOf('.'), 12 - display.textContent.indexOf('.'));
-            display.textContent = firstPart + secondPart;
-        }   
-        mem[1] = 1;                     
+            display.textContent = mem[0].toFixed(10 - display.textContent.indexOf('.'));
+        }
+        else
+        {
+            display.textContent = mem[0].toPrecision(10);
+        }
+        mem[1] = 1;                
     }
     input = '0';
     console.log(mem);
@@ -101,12 +111,25 @@ equals.addEventListener('click', () => {
         })
         mem[1] = 1;                   //clear mem[1]
         display.textContent = mem[0]; //set display to the result of the calc
-        if(display.textContent.includes('.'))
+        if(display.textContent.length > 11 && display.textContent.includes('.'))
         {
-            let firstPart = display.textContent.slice(0, display.textContent.indexOf('.'));
-            let secondPart = display.textContent.slice(display.textContent.indexOf('.'), 12-display.textContent.indexOf('.'));
-            display.textContent = firstPart + secondPart;
+            display.textContent = mem[0].toFixed(10 - display.textContent.indexOf('.'));
         }
+        else
+        {
+            display.textContent = mem[0].toPrecision(10);
+        }
+
+        /*if(display.textContent.includes('.'))
+        {
+            if(display.textContent.length > 11)
+            {
+                display.textContent = mem[0].toPrecision(10);
+            }
+            let firstPart = display.textContent.slice(0, display.textContent.indexOf('.'));
+            let secondPart = display.textContent.slice(display.textContent.indexOf('.'), 12 - display.textContent.indexOf('.'));
+            display.textContent = firstPart + secondPart;
+        }*/
         input = '0';
         console.log(mem);
         console.log(op);
