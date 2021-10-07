@@ -16,6 +16,10 @@ squareRoot.addEventListener('click', () => {
     input = Math.sqrt(input);
     mem[0] = input;
     display.textContent = mem[0];
+    if(display.textContent.length > 11 && display.textContent.includes('.'))
+    {
+        display.textContent = mem[0].toFixed(10 - display.textContent.indexOf('.'));
+    }
 })
 
 let percent = document.querySelector('.percent');
@@ -23,6 +27,10 @@ percent.addEventListener('click', () => {
     input /= 100;
     mem[0] = input;
     display.textContent = input;
+    if(display.textContent.length > 11 && display.textContent.includes('.'))
+    {
+        display.textContent = mem[0].toFixed(10 - display.textContent.indexOf('.'));
+    }
 })
 
 let decimal = document.querySelector('.dec');
@@ -131,6 +139,7 @@ posneg.addEventListener('click',() => {
     if(input != 0)
     {
         input *= -1;
+        mem[0] = input;
         display.textContent = input;
         console.log(input);
     }
