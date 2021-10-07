@@ -39,6 +39,23 @@ decimal.addEventListener('click', () => {
     display.textContent = input;
 })
 
+let posneg = document.querySelector('.posneg');
+
+posneg.addEventListener('click',() => {
+    if(input != 0)
+    {
+        input *= -1;
+        mem[0] = input;
+        display.textContent = mem[0];
+        console.log(input);
+        console.log(mem[0]);
+    }
+    else
+    {
+        display.textContent *= -1;
+        mem[0] = parseFloat(display.textContent);
+    }
+})
 
 let input = '0';
 let mem = [];
@@ -130,22 +147,6 @@ equals.addEventListener('click', () => {
         input = '0';
         console.log(mem);
         console.log(op);
-    }
-})
-
-let posneg = document.querySelector('.posneg');
-
-posneg.addEventListener('click',() => {
-    if(input != 0)
-    {
-        input *= -1;
-        mem[0] = input;
-        display.textContent = input;
-        console.log(input);
-    }
-    else
-    {
-        display.textContent *= -1
     }
 })
 
