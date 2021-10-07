@@ -5,7 +5,7 @@ body {
     display: grid;
     justify-content: center;
     align-items: center;
-    background-image: url(images/Utah_teapot_simple_2.png);
+    background-image: url(./images/Utah_teapot_simple_2.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
