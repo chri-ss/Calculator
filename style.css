@@ -26,6 +26,11 @@ body {
     grid-gap: 1rem;
 }
 
+button:hover {
+    background-color: #3183d6;
+    color: #fffb00
+}
+
 button {
     height: 4rem;
     border-radius:  1rem;
