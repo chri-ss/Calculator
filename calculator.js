@@ -11,15 +11,22 @@ clear.addEventListener('click', () => {
     display.textContent = 0;
 })
 
+let squareRootFlag = false;
+
 let squareRoot = document.querySelector('.sqrrt');
 squareRoot.addEventListener('click', () => {
-    input = Math.sqrt(input);
+    squareRootFlag = true;
+    mem[0] ? input = Math.sqrt(mem[0]) : input = Math.sqrt(input);
     mem[0] = input;
     display.textContent = mem[0];
     if(display.textContent.length > 11 && display.textContent.includes('.'))
     {
         display.textContent = mem[0].toFixed(10 - display.textContent.indexOf('.'));
     }
+    op = '';
+    console.log(mem);
+    console.log(input);
+    console.log(op);
 })
 
 let percent = document.querySelector('.percent');
@@ -63,6 +70,12 @@ let op = '';
 display.textContent = 0;
 
 buttons.forEach(button => button.addEventListener('click', () => {
+    if(squareRootFlag === true)
+    {
+        squareRootFlag = false;
+        display.textContent = '0'
+        input = '0';
+    }
     if(input.length > 10)
     {
         return 0;
@@ -127,6 +140,10 @@ equals.addEventListener('click', () => {
     else if(input === '0' && op == '÷')
     {
         input === '1';
+    }
+    else if (squareRootFlag === true)
+    {
+        return 0;
     }
     else
     {
