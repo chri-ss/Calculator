@@ -12,6 +12,7 @@ clear.addEventListener('click', () => {
 })
 
 let squareRootFlag = false;
+let equalsFlag = false;
 
 let squareRoot = document.querySelector('.sqrrt');
 squareRoot.addEventListener('click', () => {
@@ -90,7 +91,6 @@ buttons.forEach(button => button.addEventListener('click', () => {
 
 let operators = document.querySelectorAll('.operator');
 operators.forEach(operator => operator.addEventListener('click', () =>{
-   
     if(input === '0' && op == '×')
     {
         input === '1';
@@ -100,6 +100,13 @@ operators.forEach(operator => operator.addEventListener('click', () =>{
     {
         input === '1';
         op = operator.textContent;
+    }
+    else if (equalsFlag === true)
+    {
+        mem[0] = parseFloat(display.textContent);
+        op = operator.textContent; 
+        display.textContent = mem[0]; 
+        equalsFlag = false;
     }
     else if(op === '')       //first time operator
     {
@@ -133,6 +140,10 @@ operators.forEach(operator => operator.addEventListener('click', () =>{
 
 let equals = document.querySelector('.equals');
 equals.addEventListener('click', () => {
+    if(equalsFlag === true)
+    {
+        return 0;
+    }
     if(input === '0' && op == '×')
     {
         input === '1';
@@ -162,6 +173,9 @@ equals.addEventListener('click', () => {
             display.textContent = mem[0].toExponential(3);
         }
         input = '0';
+        //mem = [];
+        op = '';
+        equalsFlag = true;
         console.log(mem);
         console.log(op);
     }
